@@ -1,0 +1,10 @@
+type Calendar {
+    id: Int!
+    name: String!
+    accountId: Int!
+}
+
+extend type Query {
+    calendars: [Calendar]
+    calendar(id: Int): Calendar
+}

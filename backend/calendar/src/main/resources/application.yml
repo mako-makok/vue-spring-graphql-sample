@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/calendar
+    username: postgres
+    password: postgres
+doma:
+  dialect: postgres
+
+graphql:
+  servlet:
+    enabled: true
+    mapping: /graphql
+    corsEnabled: true
+
+graphiql:
+  mapping: /graphiql
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
+  pageTitle: GraphiQL
+  props:
+    variables:
+      editorTheme: "solarized dark"

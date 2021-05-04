@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "graphql.servlet.enabled",
+      "type": "java.lang.String",
+      "description": "Description for graphql.servlet.enabled."
+    },
+    {
+      "name": "graphql.servlet.enabled",
+      "type": "java.lang.String",
+      "description": "Description for graphql.servlet.enabled."
+    }
+  ] }

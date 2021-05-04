@@ -1,0 +1,1 @@
+createdb -U postgres -d calendar

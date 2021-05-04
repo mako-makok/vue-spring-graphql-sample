@@ -1,0 +1,59 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'org.seasar.doma.compile' version '1.1.0'
+	id 'eclipse'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+// JavaクラスとSQLファイルの出力先ディレクトリを同じにする
+processResources.destinationDir = compileJava.destinationDir
+// コンパイルより前にSQLファイルを出力先ディレクトリにコピーするために依存関係を逆転する
+compileJava.dependsOn processResources
+
+compileJava {
+	options.compilerArgs = ['-Adoma.dao.subpackage=impl', '-Adoma.dao.suffix=Impl']
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation('org.seasar.doma:doma-core:2.46.1')
+	annotationProcessor('org.seasar.doma:doma-processor:2.46.1')
+	implementation('org.seasar.doma.boot:doma-spring-boot-starter:1.5.0')
+
+	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:11.0.0'
+
+	// to embed Altair tool
+	runtimeOnly 'com.graphql-java-kickstart:altair-spring-boot-starter:11.0.0'
+
+	// to embed GraphiQL tool
+	runtimeOnly 'com.graphql-java-kickstart:graphiql-spring-boot-starter:11.0.0'
+
+	// to embed GraphQL Playground tool
+	runtimeOnly 'com.graphql-java-kickstart:playground-spring-boot-starter:11.0.0'
+
+	// to embed Voyager tool
+	runtimeOnly 'com.graphql-java-kickstart:voyager-spring-boot-starter:11.0.0'
+
+	// testing facilities
+	testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:11.0.0'
+
+	runtimeOnly 'org.postgresql:postgresql'
+}
+
+test {
+	useJUnitPlatform()
+}

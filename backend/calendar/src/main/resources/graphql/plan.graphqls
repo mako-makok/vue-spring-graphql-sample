@@ -1,0 +1,14 @@
+type Plan {
+    id: ID!
+    calendarId: Int!
+    title: String
+    description: String
+    place: String
+    startTime: LocalDateTime!
+    endTime: LocalDateTime!
+}
+
+extend type Query {
+    plan(id: Int!): Plan
+    plans(calendarId: Int!): [Plan]
+}
