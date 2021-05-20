@@ -29,7 +29,7 @@ import PlanDetail from '@/components/PlanDetail.vue'
 import MonthSwitcher from '@/components/MonthSwitcher.vue'
 import CalendarList from '@/components/CalendarList.vue'
 import { useStore } from '@/store'
-import { Calendar } from '@/domain/Calendar'
+import { createCalendar, periodDate } from '@/domain/Calendar'
 import { DayOfWeek } from '@/domain/DayOfWeek'
 import { Plan } from '@/domain/Plan'
 
@@ -61,7 +61,7 @@ export default defineComponent({
       currentYear: computed(() => store.state.currentYear),
       calendar: computed(() => {
         const { currentYear, currentMonth } = store.state
-        const { startDate, endDate } = Calendar.periodDate(currentYear, currentMonth)
+        const { startDate, endDate } = periodDate(currentYear, currentMonth)
         const getPlan = (from: Date, to: Date): Plan[] => [
           {
             id: 1,
@@ -75,7 +75,7 @@ export default defineComponent({
           },
         ]
         const plans = getPlan(startDate, endDate)
-        const calendar = new Calendar(currentYear, currentMonth, startDate, endDate, plans)
+        const calendar = createCalendar(currentYear, currentMonth, startDate, endDate, plans)
         return calendar
       }),
     }

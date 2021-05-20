@@ -7,19 +7,10 @@
 
 <script lang="ts">
 import { Day } from '@/domain/Day'
-import { defineComponent, PropType, reactive } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
-type Plan = { name: string }
 type Props = {
   day: Day
-}
-type State = {
-  date: {
-    year: number
-    month: number
-    date: number
-  }
-  plans: Plan[]
 }
 export default defineComponent({
   name: 'PlanForDay',
@@ -30,14 +21,6 @@ export default defineComponent({
     },
   },
   setup(props: Props) {
-    // const state = reactive<State>({
-    //   date: {
-    //     year: props.day.date.getFullYear(),
-    //     month: props.day.date.getMonth(),
-    //     date: props.day.date.getDate(),
-    //   },
-    //   plans: props.plans,
-    // })
     return {
       ...props,
     }
