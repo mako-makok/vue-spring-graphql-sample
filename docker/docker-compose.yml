@@ -1,0 +1,40 @@
+version: "3"
+services:
+  postgres:
+    container_name: calendar
+    image: postgres:13.2
+    ports:
+      - "5432:5432"
+    environment:
+      - "TZ=Asia/Tokyo"
+      - "POSTGRES_DB=calendar"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
+      - "POSTGRES_INITDB_ARGS=--encoding=UTF-8"
+    volumes:
+      - ../backend/calendar/docker/:/docker-entrypoint-initdb.d
+      - ../backend/calendar/src/main/resources/:/tmp
+
+  backend:
+    container_name: backend
+    build:
+      context: ../backend/calendar
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../backend/calendar:/app
+    ports:
+      - "8080:8080"
+      # remote debug port
+      - "5005:5005"
+    depends_on:
+      - postgres
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ../frontend
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../frontend:/app
+    ports:
+      - "8888:8888"
