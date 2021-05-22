@@ -32,6 +32,8 @@ import { useStore } from '@/store'
 import { createCalendar, periodDate } from '@/domain/Calendar'
 import { DayOfWeek } from '@/domain/DayOfWeek'
 import { Plan } from '@/domain/Plan'
+import { useQuery } from '@vue/apollo-composable'
+import gql from 'graphql-tag'
 
 type State = {
   isModalActive: boolean
@@ -49,6 +51,16 @@ export default defineComponent({
     const state = reactive<State>({
       isModalActive: false,
     })
+
+    const { result } = useQuery(gql`
+      {
+        accounts {
+          id
+        }
+      }
+    `)
+
+    console.log(result)
 
     const modalStateChange = () => (state.isModalActive = !state.isModalActive)
 

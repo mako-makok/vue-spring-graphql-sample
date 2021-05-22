@@ -24,8 +24,6 @@ services:
       - ../backend/calendar:/app
     ports:
       - "8080:8080"
-      # remote debug port
-      - "5005:5005"
     depends_on:
       - postgres
 
