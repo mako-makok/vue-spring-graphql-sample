@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 8888",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@apollo/client": "^3.3.19",
+    "@vue/apollo-composable": "^4.0.0-alpha.12",
+    "@vue/apollo-option": "^4.0.0-alpha.11",
     "core-js": "^3.8.3",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4",
@@ -37,6 +39,7 @@
     "sass": "^1.32.7",
     "sass-loader": "^11.0.1",
     "tailwindcss": "^2.1.2",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "vue-cli-plugin-apollo": "~0.22.2"
   }
 }
